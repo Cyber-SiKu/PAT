@@ -38,16 +38,11 @@ float Similar_rate(std::vector<std::set<int>> & v,const int & number1,
 	float Nc = 0;
 	for(std::set<int>::iterator i = v[number2-1].begin(); i != v[number2-1].end();
 	        i++) {
-		for(std::set<int>::iterator j = v[number1-1].begin(); j != v[number1-1].end();
-		        j++) {
-			if(*i == *j) {
-				Nc+=1;
-			}
-		}
+		Nc += v[number1-1].count(*i);
 	}
-	std::set<int> temp(v[number1-1]);
-	temp.insert(v[number2-1].begin(),v[number2-1].end());
+	
+	v[number1-1].insert(v[number2-1].begin(),v[number2-1].end());
 
-	float Nt = temp.size();
+	float Nt = v[number1-1].size();
 	return Nc / Nt;
 }
